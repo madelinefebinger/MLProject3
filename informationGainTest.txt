@@ -1,0 +1,15 @@
+Wind,Target
+Weak,Yes
+Weak,Yes
+Weak,Yes
+Weak,Yes
+Weak,Yes
+Weak,Yes
+Strong,Yes
+Strong,Yes
+Strong,Yes
+Weak,No
+Weak,No
+Strong,No
+Strong,No
+Strong,No
