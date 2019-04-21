@@ -34,15 +34,15 @@ class Node{
 
   public void setLabel(String label) {
     this.label = label;
-  }  
+  }
 
   public String getLabel() {
     return this.label;
-  }    
+  }
 
   public Map<String, Node> getChildren() {
     return children;
-  }  
+  }
 }
 
 public static double calculateEntropy(ArrayList<ArrayList<String>> examples){
@@ -80,13 +80,13 @@ public static double calculateEntropy(ArrayList<ArrayList<String>> examples){
 
 public static double informationGain(ArrayList<ArrayList<String>> examples, String attr, int attr_index){
   double entropy_s = calculateEntropy(examples);
-  // Find the index of that attribute is i 
+  // Find the index of that attribute is i
   // Make a map that maps the attribute value to an array list of examples with that attribute value
   Map<String, ArrayList<ArrayList<String>>> valueToExamplesMap = new HashMap<String, ArrayList<ArrayList<String>>>();
   for (int i = 0; i < examples.size(); i++){ // For each example
     ArrayList<String> ex = examples.get(i);
     String value = ex.get(attr_index);
-    
+
     if (valueToExamplesMap.containsKey(value)){ //  If the value is in the map, append the example to the ArrayList
       valueToExamplesMap.get(value).add(ex);
     }
@@ -94,7 +94,7 @@ public static double informationGain(ArrayList<ArrayList<String>> examples, Stri
       ArrayList<ArrayList<String>> examples_v = new ArrayList<ArrayList<String>>();
       examples_v.add(ex);
       valueToExamplesMap.put(value,examples_v);
-    }   
+    }
   }
 
   double infoGain = 0;
@@ -172,7 +172,7 @@ public Node ID3Alg(ArrayList<ArrayList<String>> examples, String target_attr, Ar
   for (int i = 0; i < examples.size(); i++){ // For each example
     ArrayList<String> ex = examples.get(i);
     String value = ex.get(best_attr_index);
-    
+
     if (valueToExamplesMap.containsKey(value)){ //  If the value is in the map, append the example to the ArrayList
       valueToExamplesMap.get(value).add(ex);
     }
@@ -180,7 +180,7 @@ public Node ID3Alg(ArrayList<ArrayList<String>> examples, String target_attr, Ar
       ArrayList<ArrayList<String>> examples_v = new ArrayList<ArrayList<String>>();
       examples_v.add(ex);
       valueToExamplesMap.put(value,examples_v);
-    }   
+    }
   }
   // For each possible value v_i of a
     // Add a new branch below root corresponding to the test A = v_i
@@ -229,7 +229,7 @@ public static ArrayList<String> getAttrsFromFile(String fileName){
 }
 
 
-// Get examples from file 
+// Get examples from file
 // The first row of the file should have a list of the attrs
 // File should have 1 training example per line, each attribute separated by a comma
 // see PlayTennisSampleDataFormat.txt as an example of how to format the file
@@ -253,7 +253,7 @@ public static ArrayList<ArrayList<String>> getExamplesFromFile(String fileName){
   return examples;
 }
 
-public static void printTree(Node root) {      
+public static void printTree(Node root) {
   Queue<Node> q = new LinkedList<>();
   q.add(root);
 
@@ -264,15 +264,15 @@ public static void printTree(Node root) {
     for (Map.Entry<String, Node> entry : children.entrySet()) { // for each child node
       Node child = entry.getValue();
       q.add(child);
-    } 
+    }
 
     if(!children.isEmpty()){
-      System.out.print(n.getLabel()+" has children: ");    
+      System.out.print(n.getLabel()+" has children: ");
       for (Map.Entry<String, Node> entry : children.entrySet()) { // for each child node
         String branch = entry.getKey();
-        Node child = entry.getValue();   
-        System.out.print("["+branch+","+child.getLabel()+"] "); 
-      } 
+        Node child = entry.getValue();
+        System.out.print("["+branch+","+child.getLabel()+"] ");
+      }
       System.out.println();
     }
 
@@ -286,16 +286,20 @@ public static void main(String args[]){
     // Task 2: test on 14 PlayTennis from handout
     System.out.println("Task 2");
     ArrayList<String> task2Attrs = getAttrsFromFile("task2.txt");
-    ArrayList<ArrayList<String>> task2Examples = getExamplesFromFile("task2.txt");   
+    ArrayList<ArrayList<String>> task2Examples = getExamplesFromFile("task2.txt");
     ID3 task2 = new ID3(task2Examples,"PlayTennis",task2Attrs);
 
     // Task 3: test on 4 EnjoySport examples from class
 
     System.out.println("Task 3");
     ArrayList<String> task3Attrs = getAttrsFromFile("task3.txt");
-    ArrayList<ArrayList<String>> task3Examples = getExamplesFromFile("task3.txt");   
+    ArrayList<ArrayList<String>> task3Examples = getExamplesFromFile("task3.txt");
     ID3 task3 = new ID3(task3Examples,"EnjoySport",task3Attrs);
 
     // Task 4: test on a new set of PlayTennis data
+    System.out.println("Task 4");
+    ArrayList<String> task4Attrs = getAttrsFromFile("task4.txt");
+    ArrayList<ArrayList<String>> task4Examples = getExamplesFromFile("task4.txt");
+    ID3 task4 = new ID3(task4Examples,"EnjoySport",task4Attrs);
 }
 }
