@@ -3,7 +3,7 @@ Sunny,Hot,High,Weak,Yes
 Rain,Mild,High,Strong,No
 Sunny,Cool,Normal,Weak,Yes
 Rain,Mild,High,Weak,No
-Overcast,Cool,Normal,Strong,No
+Overcast,Cool,Normal,Strong,Yes
 Sunny,Cool,Normal,Weak,Yes
 Overcast,Mild,Normal,Weak,Yes
 Rain,Hot,High,Strong,No
@@ -11,6 +11,6 @@ Sunny,Mild,High,Weak,Yes
 Rain,Mild,Normal,Weak,No
 Overcast,Mild,Normal,Weak,Yes
 Overcast,Hot,High,Strong,No
-Overcast,Mild,Normal,Strong,No
+Overcast,Mild,Normal,Strong,Yes
 Sunny,Hot,High,Weak,Yes
 Sunny,Hot,Normal,Strong,No
