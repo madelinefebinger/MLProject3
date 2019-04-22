@@ -9,11 +9,27 @@ import java.util.Queue;
 import java.util.LinkedList;
 
 public class ID3{
-public ID3(ArrayList<ArrayList<String>> examples, String target_attr, ArrayList<String> attrs){
+public ID3(String inputFile, String outputFile){
+
+  ArrayList<String> attrs = getAttrsFromFile(inputFile);
+  String target_attr = attrs.get(attrs.size()-1);
+  attrs.remove(attrs.size()-1); // Remove target_attr from attrs list
+
+  ArrayList<ArrayList<String>> examples = getExamplesFromFile(inputFile);
+
+
   Map<String,Integer> attrToIndexMap = new HashMap<String, Integer>();
   for (int i = 0; i < attrs.size(); i++){
     attrToIndexMap.put(attrs.get(i),i);
   }
+
+  try{
+    PrintStream fileOut = new PrintStream(outputFile);
+    System.setOut(fileOut);
+  }
+  catch(FileNotFoundException ex){
+  }
+
 
   Node root = ID3Alg(examples,target_attr,attrs,attrToIndexMap);
   printTree(root);
@@ -111,7 +127,7 @@ public static double informationGain(ArrayList<ArrayList<String>> examples, Stri
 }
 
 
-public Node ID3Alg(ArrayList<ArrayList<String>> examples, String target_attr, ArrayList<String> attrs, Map<String, Integer> attrToIndexMap){
+public Node ID3Alg(ArrayList<ArrayList<String>> examples,String target_attr,ArrayList<String> attrs, Map<String, Integer> attrToIndexMap){
   // Create a root Node
   Node root = new Node("");
 
@@ -281,6 +297,7 @@ public static void printTree(Node root) {
 
 
 public static void main(String args[]){
+    /*
     // Task 1: Implement ID3
 
     // Task 2: test on 14 PlayTennis from handout
@@ -301,5 +318,17 @@ public static void main(String args[]){
     ArrayList<String> task4Attrs = getAttrsFromFile("task4.txt");
     ArrayList<ArrayList<String>> task4Examples = getExamplesFromFile("task4.txt");
     ID3 task4 = new ID3(task4Examples,"EnjoySport",task4Attrs);
+    */
+
+    if (args.length == 2) 
+    { 
+      String inputDataFileLocation = args[0];
+      String outputFileLocation = args[1];
+
+      ID3 task = new ID3(inputDataFileLocation,outputFileLocation);
+    } 
+    else{
+      System.out.println("Run the program in the following format: java ID3 inputDataFileLocation outputFileLocation"); 
+    }  
 }
 }

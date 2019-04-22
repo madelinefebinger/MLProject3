@@ -1,4 +1,4 @@
-Outlook,Temperature,Humidity,Wind
+Outlook,Temperature,Humidity,Wind,PlayTennis
 Sunny,Hot,High,Weak,Yes
 Rain,Mild,High,Strong,No
 Sunny,Cool,Normal,Weak,Yes
